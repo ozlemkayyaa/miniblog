@@ -23,5 +23,13 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
     emit(ArticlesLoaded(blogs: blogList));
   }
 
-  void _onAdd(AddArticle event, Emitter<ArticleState> emit) {}
+  void _onAdd(AddArticle event, Emitter<ArticleState> emit) async {
+    final addArticle = await articleRepository.addBlog(
+      event.selectedImage,
+      event.title,
+      event.content,
+      event.author,
+    );
+    if (addArticle == true) {}
+  }
 }
